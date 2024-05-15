@@ -1,0 +1,1 @@
+Ejercicio resuelto sin properties. Con Getter y Setter
