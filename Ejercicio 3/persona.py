@@ -1,16 +1,18 @@
 from abc import ABC, abstractmethod
 from datetime import date
+from tipo_documento import TipoDocumento
 
 class Persona(ABC):
 
     #decoro el constructor con abstactmethod para impedir que se cree un obj de esta clase
     @abstractmethod
-    def __init__(self, nombre:str, apellido:str, fecha_nacimiento:date, nro_documento:int) -> None:
+    def __init__(self, nombre:str, apellido:str, fecha_nacimiento:date, nro_documento:int, tipo_documento:TipoDocumento) -> None:
         self._nombre = nombre #atributo protejido
         self._apellido = apellido
         self._fecha_nacimiento = fecha_nacimiento
         self._nro_documento = nro_documento
         #este metodo el constructor se ejecuta una unica vez, durante toda la existencia del obj.
+        self._tipo_documento = tipo_documento #atributo de tipo TipoDocumento
 
     def get_edad(self) -> int:
         return date.today().year - self.get_fecha_nacimiento().year
@@ -38,3 +40,9 @@ class Persona(ABC):
     
     def set_nro_documento(self, new_nro_documento:int):
         self._nro_documento = new_nro_documento
+
+    def get_tipo_documento(self) -> TipoDocumento:
+        return self._tipo_documento
+    
+    def set_tipo_documento(self, new_tipo_documento:TipoDocumento):
+        self._tipo_documento = new_tipo_documento

@@ -19,6 +19,7 @@ class Libro():
     def set_isbn(self, new_isbn:str): #setter condicionado
         if (new_isbn in Libro.__list_isbn):
             raise Exception("ERROR, EL ISBN NO ES UNICO")
+        Libro.__list_isbn.append(new_isbn)
         self.__isbn = new_isbn
     
     def get_nombre(self) -> str:

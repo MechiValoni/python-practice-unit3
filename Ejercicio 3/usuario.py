@@ -2,12 +2,13 @@ from datetime import date
 from persona import Persona
 from datetime import date
 from libro import Libro
+from tipo_documento import TipoDocumento
 
 class Usuario(Persona):
 
     __list_user_name = [] #atributo de clase
 
-    def __init__(self, user_name:str, password:str, email:str, nombre: str, apellido: str, fecha_nacimiento: date, nro_documento: int, administrator:bool = False) -> None:
+    def __init__(self, user_name:str, password:str, email:str, nombre: str, apellido: str, fecha_nacimiento: date, nro_documento: int, tipo_documento:TipoDocumento,administrator:bool = False) -> None:
         self.__user_name = Usuario.__validar_user_name(user_name)
         self.__password = password
         self.__estado = True #no recibivo el valor por parametro en el constructor, porque lo seteo derecho.
@@ -16,7 +17,7 @@ class Usuario(Persona):
         self.__fecha_alta = date.today() #genero la fecha del dia
         self.__fecha_baja = None #Nulo
         self.__libros = [] #lista vacia de libros del usuario, mapeo relación que termina en *
-        super().__init__(nombre, apellido, fecha_nacimiento, nro_documento) #llamo al constructor de la clase padre, con sus respectivos argumentos
+        super().__init__(nombre, apellido, fecha_nacimiento, nro_documento, tipo_documento) #llamo al constructor de la clase padre, con sus respectivos argumentos
     
     def get_user_name(self) -> str:
         return self.__user_name
@@ -26,6 +27,9 @@ class Usuario(Persona):
     
     #faltan los getter y setters restantes...
 
+    def get_libros(self) -> list: # getter de la lista
+        return self.__libros
+
     #libro:Libro no es una llamada al constructor, es un typehint
     def add_libro(self, libro:Libro): #agrega un obj Libro a la lista __libros que surge de mi relacion con la clase Libro
         self.__libros.append(libro)
@@ -34,7 +38,7 @@ class Usuario(Persona):
         self.__libros.remove(libro)
 
     def leyo_libro(self, isbn:str) -> bool:
-        for libro in self.__libros: #recorro toda mi lista de libros
+        for libro in self.get_libros(): #recorro toda mi lista de libros
             if libro.get_isbn() == isbn: 
                 return True #si el libro encontrado, retorno True
         return False #si no encuentra un libro con el mismo isbn (cod idenficador unico para un libro) en toda mi lista retorno False
