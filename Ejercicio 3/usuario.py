@@ -19,6 +19,11 @@ class Usuario(Persona):
         self.__libros = [] #lista vacia de libros del usuario, mapeo relación que termina en *
         super().__init__(nombre, apellido, fecha_nacimiento, nro_documento, tipo_documento) #llamo al constructor de la clase padre, con sus respectivos argumentos
     
+
+    @property
+    def administrator(self) -> bool:
+        return self.__administrator
+
     def get_user_name(self) -> str:
         return self.__user_name
     
@@ -57,3 +62,6 @@ class Usuario(Persona):
             raise Exception("Error! User name ya utilizado.")
         Usuario.__list_user_name.append(user_name)
         return user_name
+    
+    def __str__(self) -> str:
+        return f"{self.get_apellido()}, {self.get_nombre()}"

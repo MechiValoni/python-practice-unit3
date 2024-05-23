@@ -8,6 +8,7 @@ class Libro():
 
     def __init__(self, nombre:str, fecha_lanzamiento: date, autor:str = "Unknow") -> None:
         #aca van los atributos de instancia
+        self.cantidad_paginas = 100
         self.__nombre = nombre #atributo privado
         self.__fecha_lanzamiento = fecha_lanzamiento
         self.__autor = autor
@@ -27,11 +28,13 @@ class Libro():
     
     def set_nombre(self, new_nombre:str):
         self.__nombre = new_nombre
-
-    def get_fecha_lanzamiento(self) -> date:
-        return self.__fecha_lanzamiento
     
-    def set_fecha_lanzamiento(self, new_fecha_lanzamiento:date):
+    @property #getter
+    def fecha_lanzamiento(self) -> date:
+        return self.__fecha_lanzamiento
+
+    @fecha_lanzamiento.setter #setter
+    def fecha_lanzamiento(self, new_fecha_lanzamiento:date):
         self.__fecha_lanzamiento = new_fecha_lanzamiento
 
     def get_autor(self) -> date: #recupera el valor almacenado
@@ -47,3 +50,6 @@ class Libro():
             cod = generated_code() #pido en bucle que se genere un codigo hasta que el mismo sea unico, NO ESTE EN LA LISTA __list_isbn
         Libro.__list_isbn.append(cod) #agrego el codigo nuevo, para dejarlo guardado en la lista
         return cod
+    
+    def __str__(self) -> str:
+        return f"{self.get_autor()}: {self.get_nombre()}"
