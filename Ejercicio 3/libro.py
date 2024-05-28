@@ -52,4 +52,4 @@ class Libro():
         return cod
     
     def __str__(self) -> str:
-        return f"{self.get_autor()}: {self.get_nombre()}"
+        return f"{self.get_autor()}: {self.get_nombre()} [{self.get_isbn()}]"

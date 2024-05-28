@@ -19,7 +19,6 @@ class Usuario(Persona):
         self.__libros = [] #lista vacia de libros del usuario, mapeo relación que termina en *
         super().__init__(nombre, apellido, fecha_nacimiento, nro_documento, tipo_documento) #llamo al constructor de la clase padre, con sus respectivos argumentos
     
-
     @property
     def administrator(self) -> bool:
         return self.__administrator
