@@ -8,9 +8,9 @@ usuario = Usuario("pepe", "perez", "pperez@gmail.com", "xx22")
 
 #videos
 videos = [
-    Video("POO - La guia definitiva", usuario),
-    Video("¿Como aprender programacion y no morir en el intento?", usuario),
-    Video("Programacion en Python para videojuegos", usuario)
+    Video("POO - La guia definitiva", usuario, Tag("dev")),
+    Video("¿Como aprender programacion y no morir en el intento?", usuario, Tag("dev")),
+    Video("Programacion en Python para videojuegos", usuario, Tag("dev"))
 ]
 
 #agrego los tags a los videos

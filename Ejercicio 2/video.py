@@ -5,10 +5,10 @@ from typing import List
 
 class Video():
 
-    def __init__(self, nombre:str, usuario: Usuario) -> str:
+    def __init__(self, nombre:str, usuario: Usuario, tag_inicial: Tag) -> str:
         self.__nombre: str = nombre
         self.__fecha_publicacion: date = date.today()
-        self.__palabras_claves: List[Tag] = []
+        self.__palabras_claves: List[Tag] = [tag_inicial]
         self.__usuario: Usuario = usuario
 
     @property
